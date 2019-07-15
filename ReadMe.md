@@ -41,6 +41,14 @@ ESSample.java: contains some samples
 
 HelloES.java: Program Entry
 
+ReadJson.java: util to read json file
+
+Data/bank.json: test data used
+
+pom.xml: dependences we used
+
+ReadMe.md: guide of this rep
+
 ## Sample Lists
 ### QueryDoc
 Obtain a doc form a index.
