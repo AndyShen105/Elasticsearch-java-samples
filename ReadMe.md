@@ -72,3 +72,28 @@ a doc in Json
 **OUTPUT**
 
 the state of the query, if successed, return "created"
+
+### Upload a file
+
+**INPUT**
+- TransportClient client
+- String index
+- String type
+- String filepath
+
+**OUTPUT**
+```aidl
+----upload a file successful!-------
+```
+
+### Create an Index
+
+**INPUT**
+- TransportClient client
+- String index
+- String type
+
+**OUTPUT**
+```aidl
+----------Creat index successful----------
+```
