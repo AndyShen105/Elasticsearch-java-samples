@@ -6,6 +6,7 @@ Java: orcle jdk-1.8
 
 elasticsearch: 5.4.3
 
+idea platform
 ## About the Dependciens
 ```aidl
 
@@ -88,6 +89,20 @@ the state of the query, if successed, return "created"
 - String index
 - String type
 - String filepath
+
+**OUTPUT**
+```aidl
+----upload a file successful!-------
+```
+
+### Upload a file with bulkprocesser
+
+**INPUT**
+- TransportClient client
+- String index
+- String type
+- String filepath
+- int nitem
 
 **OUTPUT**
 ```aidl
