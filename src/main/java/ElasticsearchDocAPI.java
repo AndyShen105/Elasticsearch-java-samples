@@ -73,7 +73,9 @@ public class ElasticsearchDocAPI {
 
         cib.addMapping(type, mapping);
         CreateIndexResponse res=cib.execute().actionGet();
-        System.out.println("----------Creat index successful----------");
+
+        EsLogger.logger.info(" Creat index successful  ");
+
     }
 
     //obtain a doc from index
@@ -131,7 +133,8 @@ public class ElasticsearchDocAPI {
             }
 
             bulkRequest.execute().actionGet();
-            System.out.println("--------Upload a file successful!---------");
+
+            EsLogger.logger.info(" Upload a file successful  ");
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

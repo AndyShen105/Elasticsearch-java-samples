@@ -1,18 +1,11 @@
 //created by andyshen on 7.17.2019
 
-import org.apache.logging.log4j.Marker;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.geo.GeoPoint;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.geobounds.GeoBounds;
-import org.elasticsearch.search.aggregations.metrics.geobounds.GeoBoundsAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.stats.Stats;
-import org.elasticsearch.search.aggregations.metrics.stats.StatsAggregationBuilder;
-
-import org.apache.logging.log4j.Logger;
 
 public class ElasticsearchAggregationAPI {
     //a sample aggregations
@@ -48,9 +41,9 @@ public class ElasticsearchAggregationAPI {
         double avg = aggStats.getAvg();
         double sum = aggStats.getSum();
         long count = aggStats.getCount();
-        System.out.print(String.valueOf(count));
+
+        EsLogger.logger.info("min:{}, max:{}, avg:{}, sum:{}, count:{} ", min, max, avg, sum, count);
     }
-    //TODO: SOLVE THE PRO FOLLOW
 
     // a sample of geo bounds aggregation
     public  static void GeoBoundsAggregation(TransportClient client, String index, String type){
@@ -67,6 +60,7 @@ public class ElasticsearchAggregationAPI {
         GeoBounds agg = aggreResponse.getAggregations().get("agg");
         GeoPoint bottomRight = agg.bottomRight();
         GeoPoint topLeft = agg.topLeft();
+
         EsLogger.logger.info("bottomRight {}, topLeft {}", bottomRight, topLeft);
 
     }

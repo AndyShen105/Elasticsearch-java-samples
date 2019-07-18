@@ -51,72 +51,22 @@ pom.xml: dependences we used
 ReadMe.md: guide of this rep
 
 ## Sample Lists
-### QueryDoc
-Obtain a doc form a index.
 
-**INPUT**
+### Samples of Document API
+- test-1: del an index
+- test-2: create an index
+- test-3: upload a file into index
+- test-4: upload a data
+- test-5: obtain a doc
+- test-6: del a doc
+- test-7: upload a file with bulkprocesser into index
 
-- TransportClient client
-- String index
-- String type
-- String id
+###  Samples of search API
+- test-8: a sample search
+- test-9: search with scroll
+- test-10: search with template
 
-**OUTPUT**
-
-a doc in Json
-
-**EXAMPLE**
-```aidl
-"account_number":1,"balance":39225,"firstname":"Amber","lastname":"Duke","age":32,"gender":"M","address":"880 Holmes Lane","employer":"Pyrami","email":"amberduke@pyrami.com","city":"Brogan","state":"IL"
-```
-### UploadData
-
-**INPUT**
-
-- TransportClient client
-- String index
-- String type
-- String json
-
-**OUTPUT**
-
-the state of the query, if successed, return "created"
-
-### Upload a file
-
-**INPUT**
-- TransportClient client
-- String index
-- String type
-- String filepath
-
-**OUTPUT**
-```aidl
-----upload a file successful!-------
-```
-
-### Upload a file with bulkprocesser
-
-**INPUT**
-- TransportClient client
-- String index
-- String type
-- String filepath
-- int nitem
-
-**OUTPUT**
-```aidl
-----upload a file successful!-------
-```
-
-### Create an Index
-
-**INPUT**
-- TransportClient client
-- String index
-- String type
-
-**OUTPUT**
-```aidl
-----------Creat index successful----------
-```
+###  Samples of aggregation
+- test-11: simple aggregation
+- test-12: aggregation stats
+- test-13: geo bounds aggregations
