@@ -1,5 +1,5 @@
 # Some Samples of Elasticsearch
-This project contains some samples of Elasticsearch which is edited by java.
+This project contains some samples of Elasticsearch which are edited by java.
 
 ## Development Environment
 Java: orcle jdk-1.8 
@@ -9,7 +9,6 @@ elasticsearch: 5.4.3
 idea platform
 ## About the Dependciens
 ```aidl
-
     <dependencies>
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
@@ -38,7 +37,11 @@ idea platform
 
 ```
 ## File List
-ESSample.java: contains some samples
+ElasticsearchAggregationAPI.java: contains some test samples of ElasticsearchAggregationAPI.
+
+ElasticsearchDocAPI.java: contains some test samples of ElasticsearchDocAPI.
+
+EltasticsearchSearchAPI.java: contains some test samples of EltasticsearchSearchAPI.
 
 HelloES.java: Program Entry
 
