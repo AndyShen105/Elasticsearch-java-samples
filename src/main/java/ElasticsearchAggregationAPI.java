@@ -2,10 +2,17 @@
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.geo.GeoDistance;
 import org.elasticsearch.common.geo.GeoPoint;
+import org.elasticsearch.common.unit.DistanceUnit;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.range.Range;
 import org.elasticsearch.search.aggregations.metrics.geobounds.GeoBounds;
 import org.elasticsearch.search.aggregations.metrics.stats.Stats;
+import org.elasticsearch.search.aggregations.bucket.filter.Filter;
 
 public class ElasticsearchAggregationAPI {
     //a sample aggregations
@@ -63,6 +70,54 @@ public class ElasticsearchAggregationAPI {
 
         EsLogger.logger.info("bottomRight {}, topLeft {}", bottomRight, topLeft);
 
+    }
+
+    //a sample of filter aggregation
+    public static void FilterAggregation(TransportClient client, String index, String type){
+
+        SearchResponse searchResponse = client.prepareSearch()
+                .setIndices(index)
+                .setTypes(type)
+                .addAggregation(
+                        AggregationBuilders
+                        .filter("agg", QueryBuilders.termQuery("age", 31))
+                ).execute().actionGet();
+        Filter agg = searchResponse.getAggregations().get("agg");
+
+        EsLogger.logger.info("Count of results: {}", agg.getDocCount());
+    }
+
+    //a sample of Geo Distance aggregation
+    public static void GeoDisAggregation(TransportClient client, String index, String type){
+
+        //"arc": more accurate "plane": more fast
+        AggregationBuilder aggregation =
+                AggregationBuilders
+                        .geoDistance("agg", new GeoPoint(48.84237171118314,2.33320027692004))
+                        .field("address.location")
+                        .unit(DistanceUnit.KILOMETERS)
+                        .distanceType(GeoDistance.PLANE)
+                        .addUnboundedTo(3.0)
+                        .addRange(3.0, 10.0)
+                        .addRange(10.0, 500.0);
+
+        SearchResponse searchResponse = client.prepareSearch()
+                .setIndices(index)
+                .setTypes(type)
+                .addAggregation(aggregation).execute().actionGet();
+
+
+        Range agg = searchResponse.getAggregations().get("agg");
+
+        // For each entry
+        for (Range.Bucket entry : agg.getBuckets()) {
+            String key = entry.getKeyAsString();    // key as String
+            Number from = (Number) entry.getFrom(); // bucket from value
+            Number to = (Number) entry.getTo();     // bucket to value
+            long docCount = entry.getDocCount();    // Doc count
+
+            EsLogger.logger.info("key [{}], from [{}], to [{}], doc_count [{}]", key, from, to, docCount);
+        }
     }
 
 }

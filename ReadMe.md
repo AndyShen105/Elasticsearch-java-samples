@@ -69,7 +69,9 @@ ReadMe.md: guide of this rep
 - test-9: search with scroll
 - test-10: search with template
 
-###  Samples of aggregation
+###  Samples of aggregation API
 - test-11: simple aggregation
 - test-12: aggregation stats
 - test-13: geo bounds aggregations
+- test-14: filter aggregation
+- test-15: Geo Distance aggregation

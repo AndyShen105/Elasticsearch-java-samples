@@ -71,9 +71,15 @@ public class HelloES {
             //test-12: aggregation stats
             ElasticsearchAggregationAPI.AggregationStats(client, "cars", "transactions");
 
-             */
             //test-13: geo bounds aggregations
             ElasticsearchAggregationAPI.GeoBoundsAggregation(client, "museums", "doc");
+
+            //test-14: filter aggregation
+            ElasticsearchAggregationAPI.FilterAggregation(client, indexName, typeName);
+
+             */
+            //test-15:  Geo Distance aggregation
+            ElasticsearchAggregationAPI.GeoDisAggregation(client, "museums", "doc");
         } catch (Exception e) {
             e.printStackTrace();
         }
