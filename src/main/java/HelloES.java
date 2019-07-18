@@ -1,6 +1,9 @@
 //Created by AndyShen on 2019.7.12
 
 import java.net.InetAddress;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -25,44 +28,52 @@ public class HelloES {
                     .put("cluster.name", clusterName).build();
             TransportClient client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(clusterHost), clustPort));
+            /*
 
-             /*
             // Samples of Document API
             //test-1: del an index
-            ESSample.DelIndex(client, indexName);
+            ElasticsearchDocAPI.DelIndex(client, indexName);
 
             //test-2: create an index
-            ESSample.CreateIndexMapping(client, indexName, typeName);
+            ElasticsearchDocAPI.CreateIndexMapping(client, indexName, typeName);
 
             //test-3: upload a file into index
-            ESSample.UploadFile(client, indexName, typeName, filepath);
+            ElasticsearchDocAPI.UploadFile(client, indexName, typeName, filepath);
 
             //test-4: upload a data
-            ESSample.UploadData(client, indexName, typeName, json);
+            ElasticsearchDocAPI.UploadData(client, indexName, typeName, json);
 
             //test-5: obtain a doc
-            ESSample.QueryDoc(client, indexName, typeName, "1");
+            ElasticsearchDocAPI.QueryDoc(client, indexName, typeName, "1");
 
             //test-6: del a doc
-            ESSample.DelDoc(client, indexName, typeName, "10");
+            ElasticsearchDocAPI.DelDoc(client, indexName, typeName, "10");
 
             //test-7: upload a file with bulkprocesser into index
-            ESSample.UploadFileWithBulkPross(client, indexName, typeName, filepath, 1000);
+            ElasticsearchDocAPI.UploadFileWithBulkPross(client, indexName, typeName, filepath, 1000);
 
 
 
             // Samples of search API
             //test-8: a sample search
-            ESSample.SearchDoc(client, indexName, typeName, 2);
+            EltasticsearchSearchAPI.SearchDoc(client, indexName, typeName, 2);
 
             //test-9: search with scroll
-            ESSample.SearchWithScrolls(client, indexName, typeName);
+            EltasticsearchSearchAPI.SearchWithScrolls(client, indexName, typeName);
 
             //test-10: search with template
-            ESSample.SearchWithTemplate(client);
-            */
-            //test-11: aggregation
+            EltasticsearchSearchAPI.SearchWithTemplate(client);
 
+            //Samples of aggregation
+            //test-11: simple aggregation
+            ElasticsearchAggregationAPI.SampleAggregations(client, "cars", "transactions");
+
+            //test-12: aggregation stats
+            ElasticsearchAggregationAPI.AggregationStats(client, "cars", "transactions");
+
+             */
+            //test-13: geo bounds aggregations
+            ElasticsearchAggregationAPI.GeoBoundsAggregation(client, "museums", "doc");
         } catch (Exception e) {
             e.printStackTrace();
         }
